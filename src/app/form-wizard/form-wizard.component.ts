@@ -50,10 +50,14 @@ export class FormWizardComponent implements OnInit {
     {
       validator:[createLoanDownPaymentValidator.loanValidator]
     }
-
     ); 
+    var isMobileOrTablet = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if(false ===isMobileOrTablet){
+      this.toggleOrientation();
+    }
   }
   toggleOrientation() {
-    this.orientation = this.orientation === 'vertical' ? 'horizontal' : 'vertical';
+    this.orientation = this.orientation === 'horizontal' ? 'vertical' : 'horizontal';
   }
+  
 }
