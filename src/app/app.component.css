@@ -1,0 +1,19 @@
+body {
+    color: #512b2b!important;
+    background-color: #fbf2ea;
+    position: relative;
+    font: normal 15px/22px var(--ui-font-family-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: rgba(254,236,190,.5);
+}
+
+.page-content__wrapper {
+    max-width: 1260px;
+    margin: 0 auto;
+}
+
+.login-inner{
+	background-color: #f4fbfd;
+	padding:5%;
+}

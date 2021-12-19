@@ -1,0 +1,129 @@
+<mat-stepper linear #stepper [orientation]="orientation">
+   <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+   <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>
+         <button *ngIf="this.stepper.selectedIndex === 0" mat-raised-button color="primary" class="applicantBtn"
+            matBadgePosition="before" matBadgeColor="accent">Applicant</button>
+         <button *ngIf="this.stepper.selectedIndex !== 0" mat-raised-button disabled
+            class="applicantBtn" matBadgePosition="before" matBadgeColor="accent">
+         Applicant
+         </button>
+      </ng-template>
+      <mat-form-field appearance="fill">
+         <mat-label>Name</mat-label>
+         <input matInput formControlName="firstCtrlName"  placeholder="Last name, First name" required>
+         <span *ngIf="(firstFormGroup.get('firstCtrlName')!.touched) && (firstFormGroup.get('firstCtrlName')!.hasError('minlength'))" class="small text-danger">
+            Name should be atleast 3 characters
+         </span>
+      </mat-form-field>
+      
+      <mat-form-field appearance="fill">
+         <mat-label>Address</mat-label>
+         <input matInput formControlName="firstCtrlAddress" placeholder="Swedbank AB, 105 34 Stockholm"
+            required>
+         <span *ngIf="(firstFormGroup.get('firstCtrlAddress')!.touched) && (firstFormGroup.get('firstCtrlAddress')!.hasError('minlength'))" class="small text-danger">
+            Address should be atleast 5 characters
+         </span>
+      </mat-form-field>
+      <div>
+         <button mat-button matStepperNext class="next">Next</button>
+      </div>
+   </form>
+   </mat-step>
+   <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+   <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>
+         <button *ngIf="this.stepper.selectedIndex === 1" mat-raised-button color="primary" matBadge="8" matBadgePosition="before" matBadgeColor="accent">Total monthly income</button>
+         <button *ngIf="this.stepper.selectedIndex !== 1" mat-raised-button disabled
+            matBadgePosition="before" matBadgeColor="accent">Total monthly income</button>
+      </ng-template>
+      <mat-form-field appearance="fill">
+         <mat-label>Total monthly income &euro;</mat-label>
+         <input matInput formControlName="secondCtrlIncome" placeholder="8000"
+            required>
+         <span *ngIf="(secondFormGroup.get('secondCtrlIncome')!.touched) && (secondFormGroup.get('secondCtrlIncome')!.hasError('min'))" class="small text-danger">
+            Monthly income should be atleast 1000
+         </span>
+      </mat-form-field>
+      <div>
+         <button mat-button matStepperPrevious>Back</button>
+         <button mat-button matStepperNext>Next</button>
+      </div>
+   </form>
+   </mat-step>
+   <mat-step [stepControl]="thirdFormGroup" [editable]="isEditable">
+   <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>
+         <button *ngIf="this.stepper.selectedIndex === 2" mat-raised-button color="primary"
+            matBadgePosition="before" matBadgeColor="accent">Down payment</button>
+         <button *ngIf="this.stepper.selectedIndex !== 2" mat-raised-button disabled
+            matBadgePosition="before" matBadgeColor="accent">
+         Down payment
+         </button>
+      </ng-template>
+      <mat-form-field appearance="fill">
+         <mat-label>Down payment &euro;</mat-label>
+         <input matInput formControlName="thirdCtrlDownPayment" placeholder=""
+            required>
+          <span *ngIf="(thirdFormGroup.get('thirdCtrlDownPayment')!.touched) && (thirdFormGroup.get('thirdCtrlDownPayment')!.hasError('min'))" class="small text-danger">
+            Monthly income should be atleast 1000
+         </span>
+      </mat-form-field>
+      <div>
+         <button mat-button matStepperPrevious>Back</button>
+         <button mat-button matStepperNext>Next</button>
+      </div>
+   </form>
+   </mat-step>
+   <mat-step [stepControl]="fourthFormGroup" [editable]="isEditable">
+   <form [formGroup]="fourthFormGroup">
+      <ng-template matStepLabel>
+         <button *ngIf="this.stepper.selectedIndex === 3" mat-raised-button color="primary" class="loanAmountBtn"
+            matBadgePosition="before" matBadgeColor="accent">Choose loan amount</button>
+         <button *ngIf="this.stepper.selectedIndex !== 3" mat-raised-button disabled
+            class="loanAmountBtn" matBadgePosition="before" matBadgeColor="accent">Choose loan amount</button>
+      </ng-template>
+      <mat-label>Loan amount &euro; {{fourthFormGroup.get('fourthCtrlLoanAmount')!.value}}</mat-label>
+      <mat-slider
+        name="fourthCtrlLoanAmount"
+         thumbLabel
+         formControlName="fourthCtrlLoanAmount"
+         tickInterval="1000"
+         step="1000"
+         min="1000"
+         max="100000"
+         aria-label="$">
+      </mat-slider>
+      <div *ngIf="fourthFormGroup?.hasError('loanDownPaymentError')" class="low-down-payment alert alert-danger">Down payment has to be atleast 15% of loan amount and atmost 80%. 
+      </div>
+  
+      <div>
+         <button mat-button matStepperPrevious>Back</button>
+         <button mat-button matStepperNext>Next</button>
+      </div>
+   </form>
+   </mat-step>
+   <mat-step>
+      <ng-template matStepLabel>
+         <button *ngIf="this.stepper.selectedIndex === 4" mat-raised-button color="primary" class="applicantBtn"
+            matBadgePosition="before" matBadgeColor="accent">Done</button>
+         <button *ngIf="this.stepper.selectedIndex !== 4" mat-raised-button disabled
+            class="applicantBtn" matBadgePosition="before" matBadgeColor="accent">
+         Done
+         </button>
+      </ng-template>
+      
+         <div layout="row" layout-align="center center" class="text-center">
+            <div layout-align="center end">Applicant : {{firstFormGroup.get('firstCtrlName')!.value}}</div>
+            <div layout-align="center end">Address : {{firstFormGroup.get('firstCtrlAddress')!.value}}</div>
+            <div layout-align="center end">Total Monthly Income : &euro;{{secondFormGroup.get('secondCtrlIncome')!.value}}</div>
+            <div layout-align="center end">Down payment : &euro;{{thirdFormGroup.get('thirdCtrlDownPayment')!.value}}</div>
+            <div layout-align="center end">Loan Amount : &euro;{{fourthFormGroup.get('fourthCtrlLoanAmount')!.value}}</div>
+            <div>
+               <button mat-button matStepperPrevious>Back</button>
+               <button mat-button (click)="this.stepper.reset()">Reset</button>
+            </div>
+         </div>
+         
+   </mat-step>
+</mat-stepper>

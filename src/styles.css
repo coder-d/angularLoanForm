@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~material-design-icons/iconfont/material-icons.css';
+body{font-family:HeadlineBlack,Helvetica;background-color: #fbf2ea;color:#512b2b;}
+form{margin-top: 3%}
+.mat-form-field,.mat-slider{width:50%;padding-left: 1%}
+.mat-button-base{background-color: #31a3ae;color:#fff;}
+.mat-stepper-next{background-color: #ee7023;color:#fff;}
+.mat-slider-thumb-label{width:38px!important;height:38px!important;}
+.mat-step-header .mat-step-icon-selected,.mat-step-header .mat-step-icon-state-edit{background-color: #fdc129!important}
+.mat-accent .mat-slider-track-fill, .mat-accent .mat-slider-thumb, .mat-accent .mat-slider-thumb-label{background-color: #ee7023}
